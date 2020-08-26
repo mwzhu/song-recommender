@@ -23,4 +23,4 @@ def songlist():
     return render_template('songlist.html',  tables=[result.to_html(classes='data', header="true", justify='center')])
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
