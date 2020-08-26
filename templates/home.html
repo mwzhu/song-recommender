@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Song Recommender</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='final.css') }}">
+
+
+</head>
+
+<body>
+  <h1>Song Recommender</h1>
+  <div class="description">
+    <p>(Full list of the 5151 available songs can be found <a href="/songlist" target="_blank">here</a>)</p>
+    <h5>Select up to 3 songs and the system will recommend the 10 most similar songs:</h5>
+    <p>(Give about 15 seconds to load)</p>
+  </div>
+
+  <form method="post" action="." autocomplete="off" action="/action_page.php">
+    <div class="form-item">
+      <div class="autocomplete">
+        <input id="song1" type="text" name="song1" placeholder="Song">
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="autocomplete">
+        <input id="song2" type="text" name="song2" placeholder="Song">
+      </div>
+    </div>
+    <div class="form-item">
+      <div class="autocomplete">
+        <input id="song3" type="text" name="song3" placeholder="Song">
+      </div>
+    </div>
+    <div class="form-item">
+      <input type="submit" value="Recommend" />
+    </div>
+  </form>
+
+  <script src="{{ url_for('static',filename='autocomplete.js') }}" charset="utf-8"></script>
+  <script type="text/javascript">
+    var songs = {{ song_list|tojson }};
+
+    autocomplete(document.getElementById("song1"), songs, 6);
+    autocomplete(document.getElementById("song2"), songs, 6);
+    autocomplete(document.getElementById("song3"), songs, 6);
+
+  </script>
+
+</body>
+
+</html>
