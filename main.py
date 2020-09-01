@@ -2,6 +2,8 @@ import pandas
 import numpy as np
 from sklearn.model_selection import train_test_split
 import Recommender as Recommender
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 song_df_1 = pandas.read_table('https://static.turi.com/datasets/millionsong/10000.txt',header=None)
 song_df_1.columns = ['user_id', 'song_id', 'listen_count']
